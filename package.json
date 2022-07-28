@@ -1,0 +1,10 @@
+{
+  "name": "@huatu/components",
+  "version": "1.0.0",
+  "description": "components",
+  "main": "index.js",
+  "repository": "git@github.com:huatu-tech/components.git",
+  "author": "“kangyu” <kangyu@huatu.com>",
+  "license": "MIT",
+  "private": false
+}
