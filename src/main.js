@@ -33,7 +33,7 @@ if (typeof window !== "undefined" && window.Vue) {
 }
 // 也可以按需引入
 export default {
-  version: "1.0.6",
+  version: "1.0.4",
   install,
   Footer,
   ApproveFlow,

@@ -17,6 +17,7 @@ import { on, off } from '../../../src/utils/dom'
 const prefixCls = 'ivu-back-top'
 
 export default {
+    name: 'BackTop',
     props: {
         height: {
             type: Number,
