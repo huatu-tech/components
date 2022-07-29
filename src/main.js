@@ -6,10 +6,17 @@ import Footer from '../packages/footer';
 import LoadingBar from '../packages/loading-bar';
 import ApproveFlow from '../packages/approve-flow';
 import BackTop from '../packages/back-top';
+import Breadcrumb from '../packages/breadcrumb';
+import Calendar from '../packages/calendar';
+import CircleProgress from '../packages/circle-progress';
+import ContainerTitle from '../packages/container-title';
+import Empty from '../packages/empty';
+import FileUpload from '../packages/file-upload';
+import GlobalNav from '../packages/global-nav';
 
 Vue.use(ElementUI, { size: 'small' })
 
-const components = [Footer, ApproveFlow, BackTop];
+const components = [Footer, ApproveFlow, BackTop, Breadcrumb, Calendar, CircleProgress, ContainerTitle, Empty, FileUpload, GlobalNav];
 
 // 使用组件
 const install = function (Vue, opts = {}) {
@@ -33,11 +40,18 @@ if (typeof window !== "undefined" && window.Vue) {
 }
 // 也可以按需引入
 export default {
-  version: "1.0.4",
+  version: "1.0.5",
   install,
   Footer,
   ApproveFlow,
   BackTop,
+  Breadcrumb, 
+  Calendar, 
+  CircleProgress, 
+  ContainerTitle, 
+  Empty, 
+  FileUpload, 
+  GlobalNav,
 };
 
 Vue.config.productionTip = false
