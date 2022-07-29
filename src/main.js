@@ -36,6 +36,8 @@ export default {
   version: "1.0.6",
   install,
   Footer,
+  ApproveFlow,
+  BackTop,
 };
 
 Vue.config.productionTip = false
