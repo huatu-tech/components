@@ -14,7 +14,12 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "css-loader": "^6.7.1",
+    "element-ui": "^2.15.9",
     "lodash": "^4.17.21",
+    "node-sass": "4.14.1",
+    "sass-loader": "10.x",
+    "scss-loader": "^0.0.1",
     "vue": "^2.6.11"
   },
   "devDependencies": {

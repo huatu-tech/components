@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
+import ElementUI from 'element-ui'
 // 状态组件
 import Footer from '../packages/footer';
 import LoadingBar from '../packages/loading-bar';
 import ApproveFlow from '../packages/approve-flow';
 import BackTop from '../packages/back-top';
 
+Vue.use(ElementUI, { size: 'small' })
 
 const components = [Footer, ApproveFlow, BackTop];
 
@@ -36,8 +38,8 @@ export default {
   Footer,
 };
 
-// Vue.config.productionTip = false
+Vue.config.productionTip = false
 
-// new Vue({
-//   render: h => h(App),
-// }).$mount('#app')
+new Vue({
+  render: h => h(App),
+}).$mount('#app')

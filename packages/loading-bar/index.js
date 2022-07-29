@@ -1,4 +1,4 @@
-import LoadingBar from './loading-bar'
+import LoadingBar from './src/main.vue'
 
 let loadingBarInstance
 let color = 'primary'

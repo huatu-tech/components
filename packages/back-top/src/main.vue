@@ -81,6 +81,37 @@ export default {
 </script>
 
 <style lang="scss">
-    @import '../scss/components/backTop';
+    .ivu-affix,.ivu-back-top {
+    position: fixed;
+    z-index: 10
+}
+
+.ivu-back-top {
+    cursor: pointer;
+    display: none
+}
+
+.ivu-back-top.ivu-back-top-show {
+    display: block
+}
+
+.ivu-back-top-inner {
+    background-color: rgba(0,0,0,.6);
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.2);
+    transition: all .2s ease-in-out;
+    padding: 5px;
+}
+
+.ivu-back-top-inner:hover {
+    background-color: rgba(0,0,0,.7)
+}
+
+.ivu-back-top .svg-icon {
+    color: #fff;
+    font-size: 24px;
+    margin: 8px 12px
+}
+
 </style>
 
