@@ -1,6 +1,6 @@
 {
   "name": "@huatu/components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "main": "src/main.js",
   "description": "components",
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "lodash": "^4.17.21",
     "vue": "^2.6.11"
   },
   "devDependencies": {
