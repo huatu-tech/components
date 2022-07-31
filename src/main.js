@@ -13,10 +13,39 @@ import ContainerTitle from '../packages/container-title';
 import Empty from '../packages/empty';
 import FileUpload from '../packages/file-upload';
 import GlobalNav from '../packages/global-nav';
+import Hamburger from '../packages/hamburger';
+import Node from '../packages/node';
+import OperationLog from '../packages/operation-log';
+import OrganizationFilter from '../packages/organization-filter';
+import Pager from '../packages/pager';
+import Region from '../packages/region';
+import SideBar from '../packages/side-bar';
+import TopBar from '../packages/top-bar';
+import UserFilter from '../packages/user-filter';
 
 Vue.use(ElementUI, { size: 'small' })
 
-const components = [Footer, ApproveFlow, BackTop, Breadcrumb, Calendar, CircleProgress, ContainerTitle, Empty, FileUpload, GlobalNav];
+const components = [
+  Footer, 
+  ApproveFlow, 
+  BackTop, 
+  Breadcrumb, 
+  Calendar, 
+  CircleProgress, 
+  ContainerTitle, 
+  Empty, 
+  FileUpload, 
+  GlobalNav, 
+  Hamburger, 
+  Node,
+  OperationLog,
+  OrganizationFilter,
+  Pager,
+  Region,
+  SideBar,
+  TopBar,
+  UserFilter,
+];
 
 // 使用组件
 const install = function (Vue, opts = {}) {
@@ -52,6 +81,15 @@ export default {
   Empty, 
   FileUpload, 
   GlobalNav,
+  Hamburger, 
+  Node,
+  OperationLog,
+  OrganizationFilter,
+  Pager,
+  Region,
+  SideBar,
+  TopBar,
+  UserFilter,
 };
 
 Vue.config.productionTip = false
