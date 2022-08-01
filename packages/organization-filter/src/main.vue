@@ -56,9 +56,9 @@
 
 <script>
 
-import deepClone from '@/functions/deepClone.js'
-import { postWithJson } from '@/utils/serviceUtil.js'
-import Node from '~/node/src/main.vue'
+import deepClone from '../../../src/functions/deepClone.js'
+import { postWithJson } from '../../../src/utils/serviceUtil.js'
+import Node from '../../node/src/main.vue'
 
 export default {
     name:'OrganizationFilter',

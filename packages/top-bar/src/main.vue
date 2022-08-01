@@ -205,9 +205,9 @@
 
 <script>
 
-import Hamburger from '~/hamburger/src/main.vue'
-import GlobalNav from '~/global-nav/src/main.vue'
-import { postWithJson } from '@/utils/serviceUtil.js'
+import Hamburger from '../../hamburger/src/main.vue'
+import GlobalNav from '../../global-nav/src/main.vue'
+import { postWithJson } from '../../../src/utils/serviceUtil.js'
 
 export default {
     components: {

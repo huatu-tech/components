@@ -32,7 +32,7 @@
 <script>
 
 let timer = null
-import { postWithJson } from '@/utils/serviceUtil'
+import { postWithJson } from '../../../src/utils/serviceUtil.js'
 
 export default {
     name:'UserFilter',

@@ -36,7 +36,7 @@
 
 <script>
 
-import calendar from '@/mixins/calendar.js'
+import calendar from '../../../src/mixins/calendar.js'
 
 export default {
     name: 'Calendar',

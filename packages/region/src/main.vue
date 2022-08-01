@@ -20,7 +20,7 @@
 
 <script>
 import { isEqual } from 'lodash'
-import { postWithJson } from '@/utils/serviceUtil.js'
+import { postWithJson } from '../../../src/utils/serviceUtil.js'
 
 
 export default {
