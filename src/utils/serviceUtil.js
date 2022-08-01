@@ -2,7 +2,17 @@
 import axios from 'axios'
 let querystring = require('querystring')
 import Cookies from 'js-cookie'
-import { downloadExcel } from '@/common/functions/utils'
+
+export const downloadExcel = (url, fileName = '') => {
+    const link = document.createElement('a')
+    link.href = url
+    link.download = fileName
+
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+}
+
 
 axios.interceptors.request.use(function (config) {
     // 防csrf 攻击

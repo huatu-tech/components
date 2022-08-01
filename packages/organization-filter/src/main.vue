@@ -56,8 +56,8 @@
 
 <script>
 
-import deepClone from '@/functions/deepClone'
-import { postWithJson } from '@/utils/serviceUtil'
+import deepClone from '@/functions/deepClone.js'
+import { postWithJson } from '@/utils/serviceUtil.js'
 import Node from '~/node/src/main.vue'
 
 export default {
