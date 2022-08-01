@@ -79,7 +79,7 @@ export default {
                 let topNode = this.getTopNode()
                 let datas = topNode.$parent.datas
                 let currentActive = node.$active ? 0 : 1
-                datas.forEach((item, index) => {
+                datas.forEach((item) => {
                     this.rmeoveActive(item)
                 })
                 this.$set(node, '$active', currentActive)

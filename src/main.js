@@ -97,3 +97,6 @@ Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
 }).$mount('#app')
+
+// Region component is a destructive modification of the original component.
+// options get by vuex instead of props :  get by state.order.regionOptions

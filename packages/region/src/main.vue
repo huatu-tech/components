@@ -21,11 +21,14 @@
 <script>
 import { isEqual } from 'lodash'
 import { postWithJson } from '@/utils/serviceUtil'
-import { mapState } from 'vuex'
 
 
 export default {
     props: {
+        options: {
+            type: Array,
+            default: () => []
+        },
         width: {
         },
         disabled: {
@@ -62,11 +65,6 @@ export default {
                 children: 'children'
             }
         }
-    },
-    computed: {
-        ...mapState({
-            options: state => state.order.regionOptions
-        })
     },
     watch: {
         value: {

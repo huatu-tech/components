@@ -16,44 +16,9 @@ axios.interceptors.request.use(function (config) {
         config.headers['token'] = token
         config.headers['version'] = window.appVersion || ''
     }
-    // let imToken = sessionStorage.getItem('imToken')
-    // // im桌面端获取token识别身份
-    // if (imToken) {
-    //     config.headers['token'] = imToken
-    //     config.url = config.url + '?token=' + imToken + '&tokenType=PC_IM'
-    // } else {
-    //     if (!(/Android|webOS|iPhone|iPod|BlackBerry|htoa/i.test(navigator.userAgent))) {
-    //         // 判断是社群系统
-    //         let isSeed = window.location.origin.indexOf('seed') > -1
-    //         // pc端
-    //         if (config.url.endsWith('.m') && !isSeed) {
-    //             config.url = config.url.split('.')[0] + '.json'
-    //         }
-    //     }
-    // }
-    // oa移动端获取oa的token识别身份
-    // let oaToken = sessionStorage.getItem('oaToken') || localStorage.getItem('oaToken') || window.oaToken
-    // if (oaToken) {
-    //     config.headers['token'] = oaToken
-    //     config.url = config.url + '?token=' + oaToken
-    // }
-
-    // if (process.env.IS_CLIENT) {
-    //     if (process.env.env == 'prod') {
-    //         config.url = 'https://im.huatu.com' + config.url
-    //     } else {
-    //         config.url = 'https://dev-im.huatu.com' + config.url
-    //     }
-    //     config.url = config.url.replace('json', 'do')
-    // }
-    // // 学员通token
-    // let xytToken = sessionStorage.getItem('xytToken')
-    // if (xytToken) {
-    //     config.headers['token'] = xytToken
-    // }
     return config
 }, err => {
-    toast('请求超时', 'error')
+    this.$message.error('请求超时');
     return Promise.resolve(err)
 })
 
@@ -94,7 +59,7 @@ axios.interceptors.response.use(function (res) {
                         window.location.href = data.data.redirectUrl + encodeURIComponent(url)
                     }
                 } else {
-                    toast(data.msg, 'error')
+                    this.$message.error(data.msg);
                 }
             }
             return Promise.reject(data)
@@ -103,27 +68,7 @@ axios.interceptors.response.use(function (res) {
         if (code === 2000010086 || code === 1000010003 || code === 1000010004 || code === 1000010002 || code === 1000010001) {
             return Promise.reject(data)
         }
-        // im客户端token过期跳到登录页
-        // if (code === 1000000405 && window.store) {
-        //     window.store.commit('LOG_OUT', true)
-        // }
-        // im客户端账号登录互踢
-        // if (code === 1000000406 && window.store) {
-        //     window.store.commit('SHOW_LOG_OUT', true)
-        // }
-        // // im客户端版本强制更新
-        // if (code === 1000000403 && window.store) {
-        //     window.store.commit('UPDATE_VERSION', true)
-        //     return Promise.reject(data)
-        // }
-        // // 学员通 公众号 401时 直接跳到手机号登录页
-        // if (code == 401 && window.store) {
-        //     window.store.dispatch('codeUnauthorized')
-
-        //     return Promise.reject(data)
-        // }
-
-        toast(data.msg || '系统异常', 'error')
+        this.$message.error(data.msg || '系统异常');
         return Promise.reject(data)
     }
 }, function (error) {
@@ -135,7 +80,7 @@ axios.interceptors.response.use(function (res) {
         let url = window.location.href
         let oaToken = sessionStorage.getItem('oaToken') || localStorage.getItem('oaToken')
         if (!data.data.redirectUrl) {
-            toast(data.msg || '系统异常', 'error')
+            this.$message.error(data.msg || '系统异常');
         } else {
             if (!localStorage.getItem('token') && !oaToken) {
                 window.location.href = data.data.redirectUrl + encodeURIComponent(url)
@@ -157,9 +102,9 @@ axios.interceptors.response.use(function (res) {
     }
 
     if (!response) {
-        toast('无网络链接，请检查后重试', 'error')
+        this.$message.error('无网络链接，请检查后重试');
     } else {
-        toast((data && data.msg ? data.msg : '系统异常'), 'error')
+        this.$message.error((data && data.msg ? data.msg : '系统异常'));
     }
     return Promise.reject(error)
 })
