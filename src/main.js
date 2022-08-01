@@ -98,5 +98,10 @@ new Vue({
   render: h => h(App),
 }).$mount('#app')
 
+
+// pain attention to the following line
 // Region component is a destructive modification of the original component.
 // options get by vuex instead of props :  get by state.order.regionOptions
+
+// sideBar component is a destructive modification of the original component.
+// add a new prop: hasAuth by bind,but not use on

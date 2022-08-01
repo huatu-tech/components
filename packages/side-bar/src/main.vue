@@ -86,6 +86,10 @@ export default {
                 return []
             }
         },
+        hasAuth: {
+            type: Function,
+            default: null
+        },
         links: {
             default() {
                 return []
