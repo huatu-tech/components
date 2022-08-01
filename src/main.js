@@ -24,6 +24,8 @@ import TopBar from '../packages/top-bar';
 import UserFilter from '../packages/user-filter';
 import SkuTable from '../packages/sku-table';
 import SkuTableColmun from '../packages/sku-table-colmun';
+import MEmpty from '../packages/moblie/empty';
+import MScroll from '../packages/moblie/scroll';
 
 Vue.use(ElementUI, { size: 'small' })
 
@@ -49,6 +51,8 @@ const components = [
   UserFilter,
   SkuTable,
   SkuTableColmun,
+  MEmpty,
+  MScroll,
 ];
 
 // 使用组件
@@ -96,6 +100,8 @@ export default {
   UserFilter,
   SkuTable,
   SkuTableColmun,
+  MEmpty,
+  MScroll,
 };
 
 Vue.config.productionTip = false
