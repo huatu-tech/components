@@ -14,6 +14,11 @@ export default {
         text: {
             default: '暂无数据'
         }
+    },
+    methods: {
+        childMethod() {
+          console.log(this.fatherMethod())
+        }
     }
 }
 </script>
