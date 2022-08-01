@@ -13,6 +13,10 @@ export default {
     props: {
         text: {
             default: '暂无数据'
+        },
+        fatherMethod: {
+            type: Function,
+            default: null
         }
     },
     methods: {
