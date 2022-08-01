@@ -24,6 +24,7 @@ import { postWithJson } from '../../../src/utils/serviceUtil.js'
 
 
 export default {
+    name: 'Region',
     props: {
         options: {
             type: Array,

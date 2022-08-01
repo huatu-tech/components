@@ -210,6 +210,7 @@ import GlobalNav from '../../global-nav/src/main.vue'
 import { postWithJson } from '../../../src/utils/serviceUtil.js'
 
 export default {
+    name: 'TopBar',
     components: {
         Hamburger,
         GlobalNav
