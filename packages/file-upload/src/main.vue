@@ -13,6 +13,7 @@
 
 <script>
 export default {
+    name: 'FileUpload',
     props: {
         accept: {
             type: String,

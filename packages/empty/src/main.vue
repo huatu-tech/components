@@ -1,5 +1,5 @@
 <template>
-    <div class="empty">
+    <div class="empty" @click="childMethod">
         <img width="22" src="//htwuhan.oss-cn-beijing.aliyuncs.com/tool/cry.svg">&nbsp;{{text}}
     </div>
 </template>
