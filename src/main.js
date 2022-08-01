@@ -22,6 +22,8 @@ import Region from '../packages/region';
 import SideBar from '../packages/side-bar';
 import TopBar from '../packages/top-bar';
 import UserFilter from '../packages/user-filter';
+import SkuTable from '../packages/sku-table';
+import SkuTableColmun from '../packages/sku-table-colmun';
 
 Vue.use(ElementUI, { size: 'small' })
 
@@ -45,6 +47,8 @@ const components = [
   SideBar,
   TopBar,
   UserFilter,
+  SkuTable,
+  SkuTableColmun,
 ];
 
 // 使用组件
@@ -90,6 +94,8 @@ export default {
   SideBar,
   TopBar,
   UserFilter,
+  SkuTable,
+  SkuTableColmun,
 };
 
 Vue.config.productionTip = false
