@@ -26,10 +26,6 @@ import { postWithJson } from '../../../src/utils/serviceUtil.js'
 export default {
     name: 'Region',
     props: {
-        options: {
-            type: Array,
-            default: () => []
-        },
         width: {
         },
         disabled: {
@@ -59,7 +55,7 @@ export default {
     data() {
         return {
             defaultValue: this.value,
-            // options: [],
+            options: [],
             props: {
                 label: 'name',
                 value: 'id',
@@ -104,16 +100,6 @@ export default {
                 // 获取二级数据
                 getNodeData(targetNode, 2)
             }
-            // 获取一级数据
-            // this.areaSearch(null, 1)
-            //     .then(() => {
-            //         if (defaultValue.length) {
-            //             let nodeId = defaultValue.shift()
-            //             let targetNode = this.getNodeById(nodeId, this.options)
-            //             // 获取二级数据
-            //             getNodeData(targetNode, 2)
-            //         }
-            //     })
         },
         /**
          * 搜索地域数据
@@ -148,10 +134,7 @@ export default {
                         this.$set(node, 'children', data)
                     } else {
 
-                        this.$store.commit('changeRegionOptions', data.map(m => ({
-                            ...m,
-                            children: []
-                        })))
+                        this.options = data
                     }
                     return data
                 }).catch(() => {})

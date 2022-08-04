@@ -6,19 +6,10 @@
     <header ref="header" class="clearfix">
         <div @click="logoClick" class="pull-left pointer logo" :class="{'hideSidebar': !sidebar.opened}">
             <img :src="logoShow(sidebar.opened)">
-                <!-- sidebar.opened
-                ? '//htwuhan.oss-cn-beijing.aliyuncs.com/pakie/paike_logo.png'
-                : '//htwuhan.oss-cn-beijing.aliyuncs.com/tool/logo-mini.png' -->
-                <!-- htwuhan.oss-cn-beijing.aliyuncs.com/tool/logo@2x.png -->
-                <!-- http://htwuhan.oss-cn-beijing.aliyuncs.com/pakie/paike_logo.png -->
         </div>
         <div class="top-intro-container">
             <div>
                 <hamburger :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
-                <!-- <breadcrumb :systemNameFlag="systemName?true:false" class="breadcrumb-container">
-                    <span slot="system-name">{{this.systemName}}</span>
-                </breadcrumb> -->
-                <!-- <GolbalNav/> -->
             </div>
             <!-- start -->
             <global-nav>
@@ -33,27 +24,56 @@
                                 :src="(userInfo.avatar||'//htwuhan.oss-cn-beijing.aliyuncs.com/tool/portarit.png')|compressImage(24, 24)"
                                 width="24"
                                 height="24">
-                            <span class="name"
-                                v-cloak
-                                v-if="userInfo.name">
-                                {{userInfo.name}}
-                                <span v-if="userInfo.curRole && userInfo.curRole.roleName" class="text-gray-light">
-                                    (
-                                        {{userInfo.curRole.roleName}}
-                                        <el-popover
-                                            placement="top-start"
-                                            :disabled="!isSchools && !isDepartments"
-                                            trigger="hover">
-                                            <div class="topBar-schools-popover">
-                                                <div v-for="(item, $index) in roleNodes" :key="$index">
-                                                    {{item.name}}
+                                <span class="name"
+                                    v-cloak
+                                    v-if="userInfo.name">
+                                    {{userInfo.name}}
+                                    <template v-if="sysName === 'sku'">
+                                    <span v-if="userInfo.curRole && userInfo.curRole.roleName" class="text-gray-light">
+                                        (
+                                            {{userInfo.curRole.roleName}}
+                                            <el-popover
+                                                placement="top-start"
+                                                :disabled="!isSchools && !isDepartments"
+                                                trigger="hover">
+                                                <div class="topBar-schools-popover">
+                                                    <div v-for="(item, $index) in roleNodes" :key="$index">
+                                                        {{item.name}}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <span slot="reference">-{{isSchools ? '多分校' : isDepartments ? '多分部' : userInfo.belongNodeName}}-</span>
+                                                <span slot="reference">-{{isSchools ? '多分校' : isDepartments ? '多分部' : userInfo.belongNodeName}}-</span>
+                                            </el-popover>
+                                            <span v-if="userInfo.curRole.businessUnitName">{{userInfo.curRole.businessUnitName}}</span>
+                                        )
+                                    </span>
+                                </template>
+                                <template v-if="sysName === 'paike'">
+                                     <span v-if="userInfo.curRole && userInfo.curRole.roleName" class="text-gray-light">
+                                        ( {{userInfo.curRole.roleName}}<el-popover
+                                            placement="top-start"
+                                            width="150"
+                                            trigger="hover">
+                                            <template>
+                                                <ul>
+                                                    <li
+                                                        v-for="node in userInfo.nodes"
+                                                        :key="node.id"
+                                                        style="height: 22px;line-height:22px"
+                                                    >{{ node.name }}</li>
+                                                </ul>
+                                            </template>
+                                            <span slot="reference" v-if="userInfo.nodes && userInfo.nodes.length > 1">-多分校</span>
                                         </el-popover>
-                                        <span v-if="userInfo.curRole.businessUnitName">{{userInfo.curRole.businessUnitName}}</span>
-                                    )
-                                </span>
+                                        <span v-if="userInfo.nodes && userInfo.nodes.length === 1">-{{userInfo.nodes[0].name}}</span>
+                                        <span v-if="userInfo.curRole.businessUnitName">-{{userInfo.curRole.businessUnitName}}</span> )
+                                    </span>
+                                </template>
+                                <template v-if="sysName === 'crm'">
+                                    <span v-if="userInfo.curRole && userInfo.curRole.roleName" class="text-gray-light">
+                                        ({{userInfo.curRole.roleName}}<span v-if="userInfo.belongNodeName">-{{userInfo.belongNodeName}}</span>
+                                        <span v-if="userInfo.curRole.businessUnitName">-{{userInfo.curRole.businessUnitName}}</span>)
+                                    </span>
+                                </template>
                                 <i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
                         </div>
@@ -78,6 +98,22 @@
                                             <span v-if="item.businessUnitName">{{item.businessUnitName}}</span>
                                         ]
                                     </span>
+                                    <span v-if="item.nodes && item.nodes.length && item.nodes[0]" class="text-gray-light role-item-node">
+                                    <template v-if="sysName === 'sku'">
+                                        [
+                                            <span v-if="item.nodes && item.nodes.length && item.nodes[0]">
+                                                {{!item.nodeIds.includes(1) && item.nodes.length > 1 && item.nodes.every(e=>e.type === 0) ? '多分校' : !item.nodeIds.includes(1) && item.nodes.length > 1 && item.nodes.every(e=>e.type === 1) ? '多分部' : item.nodes[0].name}}-
+                                            </span>
+                                            <span v-if="item.businessUnitName">{{item.businessUnitName}}</span>
+                                        ]
+                                    </template>
+                                    <template v-if="sysName === 'paike'">
+                                        [ {{ item.nodes.length === 1 ? item.nodes[0].name : '多分校'}}<span v-if="item.businessUnitName">-{{item.businessUnitName}}</span> ]
+                                    </template>
+                                    <template v-if="sysName === 'crm'">
+                                        [{{item.nodes[0].name}}<span v-if="item.businessUnitName">-{{item.businessUnitName}}</span>]
+                                    </template>
+                                    </span>
                                 </el-dropdown-item>
                         </el-dropdown-menu>
                     </el-dropdown>
@@ -92,24 +128,48 @@
                             v-cloak
                             v-if="userInfo.name">
                             {{userInfo.name}}
-                            <!-- <span v-if="userInfo.belongNodeName">-{{userInfo.belongNodeName}}</span> -->
                             <span v-if="userInfo.curRole && userInfo.curRole.roleName" class="text-gray-light">
-                                (
-                                    {{userInfo.curRole.roleName}}
-                                    <el-popover
-                                        placement="top-start"
-                                        :disabled="!isSchools && !isDepartments"
-                                        trigger="hover">
-                                        <div class="topBar-schools-popover">
-                                            <div v-for="(item, $index) in roleNodes" :key="$index">
-                                                {{item.name}}
+                            <template v-if="sysName === 'sku'">
+                                    (
+                                        {{userInfo.curRole.roleName}}
+                                        <el-popover
+                                            placement="top-start"
+                                            :disabled="!isSchools && !isDepartments"
+                                            trigger="hover">
+                                            <div class="topBar-schools-popover">
+                                                <div v-for="(item, $index) in roleNodes" :key="$index">
+                                                    {{item.name}}
+                                                </div>
                                             </div>
-                                        </div>
-                                        <span slot="reference">-{{isSchools ? '多分校' : isDepartments ? '多分部' : userInfo.belongNodeName}}-</span>
-                                    </el-popover>
-                                    <span v-if="userInfo.curRole.businessUnitName">{{userInfo.curRole.businessUnitName}}</span>
+                                            <span slot="reference">-{{isSchools ? '多分校' : isDepartments ? '多分部' : userInfo.belongNodeName}}-</span>
+                                        </el-popover>
+                                        <span v-if="userInfo.curRole.businessUnitName">{{userInfo.curRole.businessUnitName}}</span>
+                                    )
+                            </template>
+                            <template v-if="sysName === 'paike'">
+                                (
+                                    <el-popover
+                                    placement="top-start"
+                                    width="150"
+                                    trigger="hover">
+                                    <template>
+                                        <ul>
+                                            <li
+                                                v-for="node in userInfo.nodes"
+                                                :key="node.id"
+                                                style="height: 22px;line-height:22px"
+                                            >{{ node.name }}</li>
+                                        </ul>
+                                    </template>
+                                    <span slot="reference" v-if="userInfo.nodes && userInfo.nodes.length > 1">-多分校</span>
+                                </el-popover>
+                                <span v-if="userInfo.nodes && userInfo.nodes.length === 1">-{{userInfo.nodes[0].name}}</span>
+                                <span v-if="userInfo.curRole.businessUnitName">-{{userInfo.curRole.businessUnitName}}</span>
                                 )
-                            </span>
+                            </template>
+                            <template v-if="sysName === 'crm'">
+                                <span v-if="userInfo.belongNodeName">-{{userInfo.belongNodeName}}</span>
+                            </template>
                         </span>
                     </template>
                     <a v-if="feedbackNumber" :href="`https://feedback.huatu.com/fk/${feedbackNumber}`" class="emergency" target="blank">
@@ -256,6 +316,24 @@ export default {
         }
     },
     computed: {
+        sysName() {
+            let str = ''
+            switch(this.systemName){
+                case '商品订单系统':
+                    str = 'sku'
+                    break
+                case '排课系统':
+                    str = 'paike'
+                    break
+                case 'CRM系统':
+                    str =  'crm'
+                    break
+                case '支付系统':
+                    str =  'pay'
+                    break
+            }
+            return str
+        },
         userInfo() {
             return this.$store.state.userInfo || {}
         },

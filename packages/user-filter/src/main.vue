@@ -17,9 +17,10 @@
         :placeholder="placeholder"
         :style="{width: typeof width === 'number' ? (width + 'px') : '100%'}">
             <el-option
-                v-for="(item, index) in list"
+                v-for="item in list"
                 :label="item.chineseName || item.name"
                 :value="item.id || item.staffId"
+                :disabled="disabledOption(item)"
                 :key="item.id || item.staffId">
                     <div class="option">
                         <span :title="item.chineseName || item.name">{{ item.chineseName || item.name }}</span>
@@ -73,7 +74,13 @@ export default {
         },
         width: {
             default: ''
-        }
+        },
+        // 禁用 option
+        disabledOptionConfig: {
+            default() {
+                return {}
+            }
+        },
     },
     data() {
         let limit = 0
@@ -127,6 +134,27 @@ export default {
         })
     },
     methods: {
+        /**
+         * 禁用下拉选项
+         */
+        disabledOption(item) {
+            let disabled = false
+            if (this.disabledOptionConfig) {
+                for (const key in this.disabledOptionConfig) {
+                    if (this.disabledOptionConfig.hasOwnProperty(key)) {
+                        const value = this.disabledOptionConfig[key]
+                        if (
+                            // eslint-disable-next-line no-undefined
+                            item[key] !== undefined &&
+                            item[key] === value
+                        ) {
+                            disabled = true
+                        }
+                    }
+                }
+            }
+            return disabled
+        },
         /**
          * 设置默认用户
          */
